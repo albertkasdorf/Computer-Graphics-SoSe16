@@ -1,0 +1,74 @@
+1.4 Koordinatensystem
+
+Bestätigen Sie ihre Annahmen durch geringe(!) Manipulation der Geometrie des Dreiecks.
+- 1.0f -> 2.0f ändern.
+
+X-Achse: Horizontal nach rechts laufend
+Y-Achse: Vertikal nach oben laufend
+Z-Achse: Aus dem Bildschirm zu Betrachter laufend
+
+
+---------------------------------------
+1.6 Oberflächen
+
+Was fällt Ihnen dabei auf?
+Man sieht das Dreieck nicht mehr.
+
+Wie heißt der Mechanismus, der für dieses Verhalten verantwortlich ist?
+- GL_CULL_FACE
+- Abhängig ob das Dreieck im Uhrzeigersinn oder
+gegen den Uhrzeigersinn definiert wurde.
+- glCullFace( GL_FRONT, GL_BACK, and GL_FRONT_AND_BACK )
+- glFrontFace( GL_CW and GL_CCW )
+
+Die Funktion glEnable( GL_CULL_FACE ) wurde auskommentiert.
+
+
+---------------------------------------
+1.7 Animierte Drehung
+
+Gradangabe in glRotatef durch den counter ersetzt.
+
+glRotatef( static_cast<float>( counter ), 0.f, 1.f, 0.f );
+
+
+---------------------------------------
+1.8 Geometrie
+
+Einfach ein weiteres Dreieck definieren.
+
+
+---------------------------------------
+1.9 Einfärben
+
+Über die Funktion glShadeModel( GL_FLAT, GL_SMOOTH ) kann festgelegt werden,
+wie die Einfärbung statt finden soll.
+
+Desweiteren muss für jeden Vertex die Farbe festgelegt werden.
+
+
+---------------------------------------
+1.10 Orthogonale Projektion
+
+- gluPerspective muss durch glOrtho ersetzt werden.
+
+There is no adjustment for distance from the camera made in these projections,
+meaning objects on the screen will appear the same size no matter how close or
+far away they are.
+
+If far > near, then this value increases as z_view decreases.
+That means objects with a smaller z_view are farther away than objects with a
+greater z_view. This equals the right-handed coordinate system where objects
+in front of the camera have negative z-values.
+
+
+---------------------------------------
+1.11 Timer-Genauigkeit
+
+Die Nachrichtenverarbeitung erfolgt per Warteschlange. Ereignisse wie der Timer
+werden in die Warteschlange eingereiht und werden dann ausgeführt, wenn alle
+vorherigen Ereignisse abgearbeitet wurde. Daher ist der Timer nicht sonderlich
+genau.
+
+Eine höhrere Genauigkeit bekommt man über "std::chrono::high_resolution_clock"
+oder über die Win32 Funktion "QueryPerformanceCounter" hin.

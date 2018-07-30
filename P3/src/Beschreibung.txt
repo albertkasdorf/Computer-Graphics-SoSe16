@@ -1,0 +1,90 @@
+---------------------------------------
+3.1 Vorbereitung
+
+Die folgenden Funktionen gehören nicht mehr zu den aktuellen OpenGL-Funktionen:
+
+- glShadeModel
+- glMatrixMode
+- glLoadIdentity
+- glFrustum
+- glTranslatef
+- glRotatef
+- glBegin/glEnd
+- glColor3f
+- glVertex3f
+
+
+---------------------------------------
+3.2 Vertex Buffer Object (VBO)
+
+- QOpenGLBuffer::allocate benötigt die Buffergröße in Bytes.
+- Speicherlayout über glVertexPointer und glColorPointer festlegen.
+- Bei glDrawArrays können keine Vertices wiederverwendet werden.
+    - Einfarbige Flächen wären damit möglich.
+
+
+---------------------------------------
+3.3 Shader
+
+
+---------------------------------------
+3.4 Matrix-Stack
+
+Unterscheidung zwischen Model-, View- und Projection-Matrix.
+
+
+---------------------------------------
+3.5 Modelle
+
+- "Tiny obj loader" anstatt dem "Open Asset Import Library" verwendet.
+- Farbinformationen werden nicht mehr übergeben.
+
+
+---------------------------------------
+3.6 Texturen
+
+Schlagen Sie die Filter in der Dokumentation nach, wofür ist Mip-Mapping gut?
+- Mip-Mapping
+    - Erstellen einer Texture mit verschiedenen Auflösungsabstufungen.
+    - Weit entfernte Objekte bekommen eine kleiner aufgelöste Texture.
+- setMinificationFilter/setMagnificationFilter
+    - Mit welchem Algorithmus werden Vergrößerungen/Verkleinerungen der Texture
+    erstellt.
+
+Schlagen Sie mirrored() nach - warum und wie wird die Textur gespiegelt?
+- QImage("moonmap1k.jpg").mirrored()
+    - Bild wird vertikal gespiegelt.
+    - OpenGL: 0.0 ist unten auf der Y-Achse.
+    - Bild: 0.0 ist oben auf der Y-Achse.
+
+---------------------------------------
+3.7 Sonnensystem
+
+Check.
+
+---------------------------------------
+3.8 QTimer
+
+Quelle: http://doc.qt.io/qt-5/qtimer.html
+
+Accuracy and Timer Resolution
+
+The accuracy of timers depends on the underlying operating system and hardware. Most platforms support a resolution of 1 millisecond, though the accuracy of the timer will not equal this resolution in many real world situations.
+
+All timer types may time out later than expected if the system is busy or unable to provide the requested accuracy. In such a case of timeout overrun, Qt will emit activated() only once, even if multiple timeouts have expired, and then will resume the original interval.
+
+
+---------------------------------------
+3.9 Kamerasteuerung für das Sonnensystem
+
+glm::lookAt( eye, center, up ).
+
+---------------------------------------
+3.10 Effiziente VBO-Nutzung für das Sonnensystem
+
+Check.
+
+---------------------------------------
+3.11 Texturen für das Sonnensystem
+
+Texture Klasse, Check.

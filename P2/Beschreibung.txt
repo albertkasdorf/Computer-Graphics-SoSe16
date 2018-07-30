@@ -1,0 +1,88 @@
+---------------------------------------
+2.3 Fensterbeschriftung
+
+- Wechseln in den Designer
+- MainWindow selektieren
+- Property "windowTitle" anpassen
+- fertig
+
+
+---------------------------------------
+2.4 Layouts
+
+- hspPlaceholder erscheint nicht da wo er in der Anleitung
+erwünscht ist. :/
+
+
+---------------------------------------
+2.5 QGLWidget
+
+File not found: mainwindow.obj
+http://stackoverflow.com/questions/15864177/file-not-found-mainwindow-obj
+
+Solution
+- Right click on project > Clean
+- Right click on project > Run qmake
+- Right click on project > Build
+- Run - worked first time
+
+
+Qt 5.5.0 cannot find OpenGL functions
+http://stackoverflow.com/questions/31633401/qt-5-5-0-cannot-find-opengl-functions
+
+Solution
+Add "LIBS += -lopengl32" to .pro file.
+
+
+---------------------------------------
+2.6 Portieren von Praktikum 1
+
+
+---------------------------------------
+2.7 Signals & Slots
+
+Sender: sldRotationZ
+Signal: valueChanged(int)
+Receiver: sbxRotationZ
+Slot: setValue(int)
+
+
+---------------------------------------
+2.8 Drehwinkel über GUI ändern
+
+Signals & Slots
+http://doc.qt.io/qt-4.8/signalsandslots.html
+All classes that contain signals or slots must mention Q_OBJECT at the top of
+their declaration. They must also derive (directly or indirectly) from QObject.
+
+QObject::connect(
+    ui->sldRotationZ, SIGNAL(valueChanged(int)),
+    ui->myGLWidget, SLOT(receiveRotationZ(int)));
+
+
+---------------------------------------
+2.9 Events
+
+Damit dies funktioniert, müssen Sie zusätzlich im Konstruktor
+folgende Methode aufrufen: setFocusPolicy(Qt::StrongFocus).
+Warum? Gibt es Komplikationen mit der Bedienung des Sliders über Tastatur?
+
+- Sobald unser Steuerelement einmal den Focus verliegt, können wir diesen
+nicht mehr zurücksetzten auf das Steuerelement.
+- the widget accepts focus by both tabbing and clicking.
+
+
+---------------------------------------
+2.10 Zoom
+
+Signals & Slots
+http://doc.qt.io/qt-4.8/signalsandslots.html
+
+
+---------------------------------------
+2.11 Würfel
+
+- Jeweils eine Achse pro Würfelseite hat einen festen Wert.
+
+
+---------------------------------------

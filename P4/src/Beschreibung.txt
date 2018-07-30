@@ -1,0 +1,36 @@
+---------------------------------------
+4.1 Erweitern des VBO um Normalvektoren
+
+Check.
+
+---------------------------------------
+4.2 Normalvektoren als Farben rendern
+
+Check.
+
+---------------------------------------
+4.3 Wechseln zwischen Shadern
+
+Check.
+
+---------------------------------------
+4.4 Hitzeflimmern für die Sonne
+
+How can I pass multiple textures to a single shader?
+http://stackoverflow.com/questions/25252512/how-can-i-pass-multiple-textures-to-a-single-shader
+=> glActiveTexture + glBindTexture + glUniform1i
+
+Texture Units
+http://learnopengl.com/#!Getting-started/Textures
+
+Photoshop Blendmodi in GLSL
+http://renderingpipeline.com/2012/06/photoshop-blendmodi-glsl/
+
+---------------------------------------
+4.5 Phong-Beleuchtungsmodell für das Sonnensystem
+
+Modifizieren Sie die Shader so, dass die Farbinformationen der jeweiligen Textur verwendet werden. Wie erreichen Sie dies sinnvoll?
+=> Indem die Farbe der Texture mit der der Phong Beleuchtung gemischt wird. (Multikation im Fragment-Shader)
+
+Nichtsdestotrotz sollen die von der Sonne abgewendeten Seiten dunkel sein.
+=> Multiplikation mit der View-Matrix aus dem Vertex-Shader entfernen.
